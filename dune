@@ -11,7 +11,7 @@
 (copy_files
  (files x86/*)
  (enabled_if
-  (= %{architecture} "x86_64")))
+  (= %{architecture} "amd64")))
 
 (copy_files
  (files PowerPC/*)
