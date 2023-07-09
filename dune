@@ -1,0 +1,27 @@
+(executable
+ (name main)
+ (package min-caml)
+ (public_name mincaml))
+
+(ocamllex lexer)
+
+(menhir
+ (modules parser))
+
+(copy_files
+ (files x86/*)
+ (enabled_if
+  (= %{architecture} "x86_64")))
+
+(copy_files
+ (files PowerPC/*)
+ (enabled_if
+  (= %{architecture} "ppc64")))
+
+; SPARC has been discontinued since 2017 and is no longer officially supported.
+; [Remove SPARC backend #659] https://github.com/ocaml/ocaml/pull/659
+
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A))))
